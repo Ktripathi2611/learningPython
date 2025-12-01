@@ -1,12 +1,3 @@
-# Python Basics - Study Notes
-
-> [!NOTE]
-> These notes are organized based on the concepts covered in `BasicOfpython.ipynb`. Each section includes explanations, syntax examples, and key points to remember.
-
----
-
-## Table of Contents
-1. [Basic Printing](#1-basic-printing)
 2. [String Types and Quotation Marks](#2-string-types-and-quotation-marks)
 3. [Boolean Operations](#3-boolean-operations)
 4. [Variables](#4-variables)
