@@ -1,0 +1,23 @@
+We are learning python file handling this is the content which i will be getting if i execute the code for reading the file
+
+modes to open file are the : w, r, a, x, b, t
+
+w : write
+r : read
+a : append
+x : create
+b : binary
+t : text
+
+modes to write in file are : w, a, x
+
+w : write
+a : append
+x : create
+
+modes to read in file are : r, x
+
+r : read
+x : create
+
+to close the file we use close() method

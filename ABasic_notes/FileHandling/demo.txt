@@ -1,0 +1,3 @@
+Hello, Python!
+File handling is important.
+New line added.
