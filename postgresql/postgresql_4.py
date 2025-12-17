@@ -63,6 +63,34 @@ def data():
     connect.close()
     print("Connection closed")
 
-data()
+#data extraction
+def extract():
+    # establishing the connection
+    connect = psycopg2.connect(
+        dbname="postgres",
+        user="postgres",
+        password="2611",
+        host="localhost",
+        port="5432"
+    )
+    # checking if the connection is established
+    print("Connection established")
 
+    # creating a cursor object using the cursor() method
+    cursor = connect.cursor()
 
+    # creating table as per requirement
+    cursor.execute('''select * from employee''')
+    print(cursor.fetchall())
+
+    print("Data extracted")
+
+    # commit your changes in the database
+    connect.commit()   # ✅ commit is called on the connection, not cursor
+    print("Changes committed")
+
+    # closing the connection
+    connect.close()
+    print("Connection closed")
+    
+extract()

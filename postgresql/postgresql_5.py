@@ -1,3 +1,4 @@
+#adding the input from the user to the database
 # in this module  we  will learn how to insert data into the table
 import psycopg2  # this module is used to connect to postgresql database
 
@@ -49,9 +50,17 @@ def data():
 
     # creating a cursor object using the cursor() method
     cursor = connect.cursor()
+#taking the user input for the database
+    name = input("Enter your name: ")
+    age = input("Enter your age: ")
+    salary = input("Enter your salary: ")
 
     # creating table as per requirement
-    cursor.execute('''insert into employee(name, age, salary) values('John', 25, 50000)''')
+    cursor.execute(
+    "INSERT INTO employee(name, age, salary) VALUES (%s, %s, %s)",
+    (name, age, salary)
+)
+    
 
     print("Data inserted")
 
@@ -63,6 +72,34 @@ def data():
     connect.close()
     print("Connection closed")
 
+#data extraction
+def extract():
+    # establishing the connection
+    connect = psycopg2.connect(
+        dbname="postgres",
+        user="postgres",
+        password="2611",
+        host="localhost",
+        port="5432"
+    )
+    # checking if the connection is established
+    print("Connection established")
+
+    # creating a cursor object using the cursor() method
+    cursor = connect.cursor()
+
+    # creating table as per requirement
+    cursor.execute('''select * from employee''')
+    print(cursor.fetchall())
+
+    print("Data extracted")
+
+    # commit your changes in the database
+    connect.commit()   # ✅ commit is called on the connection, not cursor
+    print("Changes committed")
+
+    # closing the connection
+    connect.close()
+    print("Connection closed")
+    
 data()
-
-
