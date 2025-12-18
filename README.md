@@ -12,6 +12,8 @@
   - [ABasic_notes](#abasic_notes)
   - [AdvancePython](#advancepython)
   - [Assignments](#assignments)
+  - [DataAnalysis](#dataanalysis)
+  - [postgresql](#postgresql)
 - [Dependencies & Relationships](#-dependencies--relationships)
 - [Getting Started](#-getting-started)
 - [Environment Requirements](#-environment-requirements)
@@ -27,6 +29,8 @@ This repository serves as a structured learning path for Python programming. It 
 - **Fundamentals** – Variables, data types, operators, strings, and control flow
 - **Intermediate** – Functions, file handling, and custom modules
 - **Advanced** – Object-Oriented Programming, Regular Expressions, and GUI development with Tkinter
+- **Data Science** – Data analysis with Pandas, NumPy, and visualization libraries
+- **Database** – PostgreSQL database connectivity and CRUD operations
 - **Practical Exercises** – Assignments to reinforce learning
 
 ---
@@ -72,6 +76,17 @@ This repository serves as a structured learning path for Python programming. It 
 │   ├── 📄 Assignment4.ipynb         # Functions & lists
 │   ├── 📄 Assignment5.ipynb         # File handling tasks
 │   └── 📄 Assignment6.py            # Tkinter calculator project
+│
+├── 📁 DataAnalysis/                 # Data Science & Analytics
+│   └── 📄 DataAnalysis_Complete.ipynb  # Comprehensive data analysis tutorial
+│
+├── 📁 postgresql/                   # Database connectivity
+│   ├── 📄 postgresql_1.py           # Database connection basics
+│   ├── 📄 postgresql_2.py           # Creating tables
+│   ├── 📄 postgresql_3.py           # Inserting data
+│   ├── 📄 postgresql_4.py           # Querying & extracting data
+│   ├── 📄 postgresql_5.py           # User input to database
+│   └── 📁 env/                      # Virtual environment (dependencies)
 │
 └── 📄 README.md                     # This documentation file
 ```
@@ -160,12 +175,58 @@ This repository serves as a structured learning path for Python programming. It 
 
 ---
 
+### DataAnalysis
+
+> **Purpose:** Learn data science fundamentals including data manipulation, analysis, and visualization.
+
+| File | Description |
+|------|-------------|
+| `DataAnalysis_Complete.ipynb` | Comprehensive data analysis tutorial covering Pandas, NumPy, data cleaning, manipulation, and visualization techniques |
+
+**Key Topics Covered:**
+- 📊 **Pandas** – DataFrames, Series, data loading, filtering, grouping
+- 🔢 **NumPy** – Arrays, mathematical operations, statistical functions
+- 📈 **Data Visualization** – Matplotlib, Seaborn charts and graphs
+- 🧹 **Data Cleaning** – Handling missing values, data transformation
+- 📉 **Exploratory Data Analysis (EDA)** – Statistical summaries, correlations
+
+---
+
+### postgresql
+
+> **Purpose:** Learn database connectivity and CRUD operations with PostgreSQL using Python.
+
+| File | Description | Topics Covered |
+|------|-------------|----------------|
+| `postgresql_1.py` | Database connection | Establishing connection using `psycopg2` |
+| `postgresql_2.py` | Table creation | Creating tables with SQL commands |
+| `postgresql_3.py` | Data insertion | Inserting records into tables |
+| `postgresql_4.py` | Data extraction | Querying data with SELECT statements |
+| `postgresql_5.py` | User input handling | Dynamic data insertion from user input |
+
+**Progressive Learning Path:**
+```
+1️⃣ postgresql_1.py → Connect to database
+       ↓
+2️⃣ postgresql_2.py → Create employee table
+       ↓
+3️⃣ postgresql_3.py → Insert sample data
+       ↓
+4️⃣ postgresql_4.py → Query and fetch data
+       ↓
+5️⃣ postgresql_5.py → Interactive data entry
+```
+
+---
+
 ## 🔗 Dependencies & Relationships
 
 ```mermaid
 graph TD
     A[ABasic_notes] --> B[AdvancePython]
     A --> C[Assignments]
+    A --> D[DataAnalysis]
+    A --> E[postgresql]
     
     subgraph Fundamentals
         A1[BasicOfpython notebooks] --> A2[FileHandling]
@@ -177,6 +238,14 @@ graph TD
         B2[RegularExpression]
     end
     
+    subgraph DataScience
+        D1[DataAnalysis_Complete]
+    end
+    
+    subgraph Database
+        E1[postgresql_1-5]
+    end
+    
     subgraph Practice
         C1[Assignment1-5] --> C2[Assignment6]
     end
@@ -184,10 +253,14 @@ graph TD
     A --> Fundamentals
     B --> Advanced
     C --> Practice
+    D --> DataScience
+    E --> Database
     
     A3 -.-> |"Module import"| A1
     B3 -.-> |"Uses concepts from"| B1
     C2 -.-> |"Applies"| B3
+    D1 -.-> |"Uses"| A1
+    E1 -.-> |"Applies"| A1
 ```
 
 ### Key Relationships
@@ -198,6 +271,8 @@ graph TD
 | `Tkinter/` | `ObjectOrientedProgramming/` | GUI apps use OOP concepts like classes |
 | `Assignment6.py` | `Tkinter/` | Applies Tkinter knowledge from tutorials |
 | `FileHandling/` | `*.txt`, `*.json`, `*.pkl` | Practice files used by `fileHandling.ipynb` |
+| `DataAnalysis/` | `ABasic_notes/` | Uses Python fundamentals for data science |
+| `postgresql/` | `ABasic_notes/` | Applies Python basics for database operations |
 
 ---
 
@@ -221,9 +296,13 @@ cd Python
        ↓
 4️⃣ Complete Assignments 1-5
        ↓
-5️⃣ Move to AdvancePython/ topics
+5️⃣ Move to AdvancePython/ topics (OOP, Regex, Tkinter)
        ↓
 6️⃣ Build Assignment6 (Calculator)
+       ↓
+7️⃣ Learn Data Analysis with DataAnalysis/
+       ↓
+8️⃣ Explore Database operations with postgresql/
 ```
 
 ### 3. Running Notebooks
@@ -248,6 +327,11 @@ python Assignments/Assignment6.py
 # Test custom module
 cd ABasic_notes/Userdefine_module
 python mycode.py
+
+# Run PostgreSQL scripts (ensure PostgreSQL is running)
+cd postgresql
+python postgresql_1.py  # Test connection
+python postgresql_5.py  # Interactive data entry
 ```
 
 ---
@@ -261,6 +345,11 @@ python mycode.py
 | Python | 3.8+ | Core language runtime |
 | Jupyter | Latest | Running `.ipynb` notebooks |
 | Tkinter | Built-in | GUI applications |
+| PostgreSQL | 12+ | Database server (for postgresql/) |
+| psycopg2 | Latest | PostgreSQL adapter for Python |
+| pandas | Latest | Data manipulation (for DataAnalysis/) |
+| numpy | Latest | Numerical computing |
+| matplotlib | Latest | Data visualization |
 
 ### Installation
 
@@ -273,6 +362,15 @@ pip install notebook jupyterlab
 
 # Tkinter is included with Python on Windows
 # For Linux: sudo apt-get install python3-tk
+
+# Install Data Analysis libraries
+pip install pandas numpy matplotlib seaborn
+
+# Install PostgreSQL adapter
+pip install psycopg2-binary
+
+# For PostgreSQL database:
+# Download and install from: https://www.postgresql.org/download/
 ```
 
 ### Recommended IDE/Editors
@@ -407,9 +505,25 @@ Use this checklist to track your learning progress:
 - [ ] Regular Expressions
 - [ ] GUI with Tkinter
 
+### Data Science
+- [ ] Pandas DataFrames & Series
+- [ ] NumPy Arrays & Operations
+- [ ] Data Visualization (Matplotlib/Seaborn)
+- [ ] Data Cleaning & Transformation
+- [ ] Exploratory Data Analysis
+
+### Database
+- [ ] PostgreSQL Connection
+- [ ] Table Creation (CREATE)
+- [ ] Data Insertion (INSERT)
+- [ ] Data Querying (SELECT)
+- [ ] User Input to Database
+
 ### Projects
 - [ ] Complete Assignments 1-5
 - [ ] Build Calculator App (Assignment 6)
+- [ ] Complete Data Analysis Notebook
+- [ ] Build Database-Connected Application
 
 ---
 
