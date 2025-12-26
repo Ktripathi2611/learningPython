@@ -1,0 +1,71 @@
+{# =============================================================================
+TOPIC 4: BASIC WEBPAGE 2 - SECOND PAGE
+=============================================================================
+This is the second page demonstrating multi-page Flask applications.
+
+Key Concepts:
+- Multiple pages share the same base template
+- Each page has its own route in app.py
+- Template inheritance reduces code duplication
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Second Page - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>📄 Welcome to the Second Page</h1>
+
+    <p>
+        This is the second page of our Flask application. It demonstrates how to
+        create multiple pages that share a common layout through template inheritance.
+    </p>
+
+    {# =========================================================================
+    TOPIC 10: REDIRECTING USING HYPERLINKS 2
+    =========================================================================
+    More examples of hyperlink navigation between pages.
+    All links use url_for() for dynamic URL generation.
+    ========================================================================= #}
+
+    <h2>🔗 Navigation Links</h2>
+
+    <div class="nav-links">
+        <!-- Link to home page -->
+        <a href="{{ url_for('home') }}">🏠 Go to Home Page</a>
+
+        <!-- Link to register page -->
+        <a href="{{ url_for('register') }}">📝 Register Page</a>
+
+        <!-- Link to login page -->
+        <a href="{{ url_for('login') }}">🔐 Login Page</a>
+
+        <!-- Link to gallery -->
+        <a href="{{ url_for('gallery') }}">🖼️ View Gallery</a>
+    </div>
+
+    <!-- Information Card -->
+    <div class="card mt-4" style="background-color: #fff3e0;">
+        <h3>📝 Notes on Multi-Page Applications</h3>
+        <p>
+            In a Flask application, each page is created by:
+        </p>
+        <ol style="margin-left: 20px; color: #666;">
+            <li>Creating a route in <code>app.py</code> using <code>@app.route('/path')</code></li>
+            <li>Creating a view function that returns the rendered template</li>
+            <li>Creating an HTML template in the <code>template</code> folder</li>
+            <li>Extending the base template for consistent design</li>
+        </ol>
+    </div>
+
+    <!-- Code Example -->
+    <div class="card mt-3" style="background-color: #f5f5f5;">
+        <h3>💻 Route Example</h3>
+        <pre style="background: #2b2d42; color: #4cc9f0; padding: 15px; border-radius: 8px; overflow-x: auto;">
+@app.route('/second')
+def second():
+    return render_template('second.html')</pre>
+    </div>
+</div>
+{% endblock %}

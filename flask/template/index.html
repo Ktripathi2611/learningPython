@@ -1,0 +1,78 @@
+{# =============================================================================
+TOPIC 12: TEMPLATE INHERITANCE EXAMPLE - INDEX PAGE
+=============================================================================
+This page demonstrates template inheritance by extending base.html.
+
+Template Inheritance Anatomy:
+- extends 'base.html': Must be the FIRST tag in the file
+- block name...endblock: Overrides blocks from parent
+- Parent blocks not overridden are inherited as-is
+
+This creates a clean, DRY (Don't Repeat Yourself) structure where:
+- Common HTML (nav, footer, CSS links) is defined once in base.html
+- Each page only defines its unique content
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Index - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>📋 Index Page</h1>
+
+    <p>
+        This page demonstrates template inheritance in Flask/Jinja2.
+        It extends <code>base.html</code> and only defines the content that's unique to this page.
+    </p>
+
+    <!-- Template Inheritance Diagram -->
+    <div class="card" style="background-color: #e8f4f8;">
+        <h3>🔗 Template Inheritance Structure</h3>
+        <pre style="font-family: monospace; color: #333;">
+┌─────────────────────────────────────────────┐
+│               base.html                      │
+│  ┌─────────────────────────────────────┐    │
+│  │  DOCTYPE html                       │    │
+│  │  head...block title.../head         │    │
+│  │  body                               │    │
+│  │      nav.../nav                     │    │
+│  │      block content                  │    │
+│  │          (overridden by child)      │    │
+│  │      endblock                       │    │
+│  │      footer.../footer               │    │
+│  │  /body                              │    │
+│  └─────────────────────────────────────┘    │
+└─────────────────────────────────────────────┘
+        ↑ extends
+┌─────────────────────────────────────────────┐
+│              index.html                      │
+│  extends 'base.html'                        │
+│  block title Index endblock                 │
+│  block content                              │
+│      h1 Index Page /h1                      │
+│      p My unique content here.../p         │
+│  endblock                                   │
+└─────────────────────────────────────────────┘</pre>
+    </div>
+
+    <!-- Benefits of Template Inheritance -->
+    <div class="card mt-3" style="background-color: #fff3e0;">
+        <h3>✨ Benefits of Template Inheritance</h3>
+        <ul style="margin-left: 20px; color: #666;">
+            <li><strong>DRY Principle:</strong> Write common code once</li>
+            <li><strong>Consistency:</strong> All pages share the same layout</li>
+            <li><strong>Easy Updates:</strong> Change navigation once, update all pages</li>
+            <li><strong>Cleaner Code:</strong> Each template focuses on its unique content</li>
+            <li><strong>Less Errors:</strong> Common code is tested once</li>
+        </ul>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-links mt-4">
+        <a href="{{ url_for('home') }}">🏠 Home</a>
+        <a href="{{ url_for('register') }}">📝 Register</a>
+        <a href="{{ url_for('gallery') }}">🖼️ Gallery</a>
+    </div>
+</div>
+{% endblock %}

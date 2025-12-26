@@ -1,0 +1,36 @@
+{# =============================================================================
+LOGIN SUCCESS PAGE
+=============================================================================
+Displayed after successful login to welcome the user.
+
+Jinja2 Variable Interpolation:
+- username displays the username passed from Flask
+- Variables are passed via render_template('template.html', var=value)
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Welcome - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card text-center">
+    <h1>✅ Login Successful!</h1>
+
+    <!-- Display alert for success message -->
+    <div class="alert alert-success">
+        <strong>Welcome back, {{ username }}!</strong>
+        <p>You have successfully logged in to your account.</p>
+    </div>
+
+    <p>
+        This page demonstrates passing data from Flask to templates.
+        The username "<strong>{{ username }}</strong>" was passed using
+        <code>render_template('login_success.html', username=username)</code>
+    </p>
+
+    <div class="nav-links" style="justify-content: center;">
+        <a href="{{ url_for('home') }}" class="btn">🏠 Go to Home</a>
+        <a href="{{ url_for('gallery') }}" class="btn btn-secondary">🖼️ View Gallery</a>
+    </div>
+</div>
+{% endblock %}

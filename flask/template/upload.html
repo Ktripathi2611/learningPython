@@ -1,0 +1,93 @@
+{# =============================================================================
+TOPIC 11: FILE UPLOAD PAGE
+=============================================================================
+Allows users to upload images to the server.
+
+Key Concepts:
+- enctype="multipart/form-data": Required for file uploads
+- input type="file": Creates a file picker
+- Files are accessible in Flask via request.files['field_name']
+
+File Upload Process:
+1. User selects a file using the file input
+2. Form is submitted with enctype="multipart/form-data"
+3. Flask receives file in request.files dictionary
+4. File is saved to the configured UPLOAD_FOLDER
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Upload Image - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>📤 Upload Image</h1>
+
+    <p>
+        Select an image file to upload. Supported formats: JPG, PNG, GIF, WebP.
+        Uploaded images will appear in the <a href="{{ url_for('gallery') }}">Gallery</a>.
+    </p>
+
+    {# =========================================================================
+    FILE UPLOAD FORM
+    =========================================================================
+    enctype="multipart/form-data":
+    - Required attribute for forms that include file uploads
+    - Tells the browser to send the form data (including files) in multiple parts
+    - Without this, the file content won't be sent, only the filename
+
+    action="/upload":
+    - Specifies the URL to send form data to
+    - Can also use url_for('upload') for dynamic URL
+
+    method="post":
+    - POST method is required for file uploads
+    - GET cannot carry file data in the URL
+    ========================================================================= #}
+
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+        <h2>Select Image File</h2>
+
+        <!-- File Input -->
+        <div class="form-group">
+            <label for="file">🖼️ Choose Image:</label>
+            <input type="file" id="file" name="file" accept="image/*" required>
+            <!-- 
+                name="file": This is the key used in Flask's request.files['file']
+                accept="image/*": Limits file picker to show only image files
+            -->
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <input type="submit" value="Upload Image" class="btn btn-success">
+        </div>
+    </form>
+</div>
+
+<!-- Information Card -->
+<div class="card mt-3">
+    <h3>💻 Flask File Upload Code Example</h3>
+    <pre style="background: #2b2d42; color: #4cc9f0; padding: 15px; border-radius: 8px; overflow-x: auto;">
+@app.route('/upload', methods=['POST'])
+def upload():
+    # Get the file from the form
+    file = request.files['file']
+    
+    # Save the file to the upload folder
+    file.save(os.path.join(
+        app.config['UPLOAD_FOLDER'], 
+        file.filename
+    ))
+    
+    return redirect(url_for('gallery'))</pre>
+
+    <h3 class="mt-3">⚠️ Security Considerations</h3>
+    <ul style="margin-left: 20px; color: #666;">
+        <li>Always validate file types before saving</li>
+        <li>Limit file sizes to prevent server overload</li>
+        <li>Use <code>secure_filename()</code> from Werkzeug to sanitize filenames</li>
+        <li>Store uploads outside the web root if possible</li>
+    </ul>
+</div>
+{% endblock %}

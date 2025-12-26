@@ -1,27 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register form</title>
-</head>
-<body>
-<!-- add the name city phone number -->
+{# =============================================================================
+TOPICS 6, 7, 8: BASIC REGISTRATION FORM
+=============================================================================
+This page contains a registration form demonstrating HTML forms with Flask.
+
+Key Concepts Covered:
+- HTML form creation with various input types
+- Form action and method attributes
+- Form data submission using POST method
+- Input validation with HTML5 attributes
+
+Form Workflow:
+1. User visits /register (GET request) - this form is displayed
+2. User fills in the form and clicks Submit
+3. Browser sends POST request to /register with form data
+4. Flask's register_post() function handles the data
+5. User is redirected to confirmation page with their data
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Register - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>📝 Registration Form</h1>
+
+    <p>
+        This form demonstrates how Flask handles form data using the POST method.
+        Fill in the fields below and submit to see your data on the confirmation page.
+    </p>
+
+    {# =========================================================================
+    HTML FORM EXPLANATION
+    =========================================================================
+    action="": Empty action means form submits to the current URL
+    method="post": Uses HTTP POST method (data sent in request body, not URL)
+
+    Input attributes:
+    - name: Key used to access this field in Flask (request.form['name'])
+    - id: Used for label association and CSS/JavaScript
+    - type: Determines input behavior (text, password, email, etc.)
+    - required: HTML5 validation - form won't submit without this field
+    - placeholder: Hint text shown when field is empty
+    - pattern: Regular expression for validation
+    ========================================================================= #}
+
     <form action="" method="post">
-        <h2>Register Form</h2>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+        <h2>Create Your Account</h2>
 
-        <label for=" city">City:</label>
-        <input type="text" id="city" name="city" required><br><br>
+        <!-- Username Field -->
+        <div class="form-group">
+            <label for="username">👤 Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your username" minlength="3"
+                maxlength="50">
+            <!-- Note: 'name' attribute MUST match what Flask expects in request.form['username'] -->
+        </div>
 
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" name="phone" required><br><br>
+        <!-- City Field -->
+        <div class="form-group">
+            <label for="city">🏙️ City:</label>
+            <input type="text" id="city" name="city" required placeholder="Enter your city">
+        </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+        <!-- Phone Field -->
+        <div class="form-group">
+            <label for="phone">📱 Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number" pattern="[0-9]{10}"
+                title="Please enter a 10-digit phone number">
+            <!-- type="tel" provides numeric keyboard on mobile devices -->
+            <!-- pattern attribute ensures exactly 10 digits -->
+        </div>
 
-        <input type="submit" value="Register">
+        <!-- Password Field -->
+        <div class="form-group">
+            <label for="password">🔒 Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Create a strong password"
+                minlength="6">
+            <!-- type="password" hides the input characters -->
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <input type="submit" value="Register" class="btn">
+        </div>
     </form>
-</body>
-</html>
+
+    <!-- Additional Information -->
+    <div class="card mt-4" style="background-color: #e8f4f8;">
+        <h3>💡 How Form Data is Processed</h3>
+        <p>When you submit this form:</p>
+        <ol style="margin-left: 20px; color: #666;">
+            <li>Browser sends a POST request to <code>/register</code></li>
+            <li>Flask receives the data in <code>request.form</code> dictionary</li>
+            <li>Each input's <code>name</code> attribute becomes a key</li>
+            <li>Example: <code>request.form['username']</code> gets the username</li>
+            <li>The data is passed to the confirmation template</li>
+        </ol>
+    </div>
+
+    <!-- Already have an account? Link to login -->
+    <p class="text-center mt-3">
+        Already have an account? <a href="{{ url_for('login') }}">Login here</a>
+    </p>
+</div>
+{% endblock %}

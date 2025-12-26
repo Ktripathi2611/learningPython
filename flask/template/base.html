@@ -1,0 +1,106 @@
+{# =============================================================================
+TOPIC 12: TEMPLATE INHERITANCE - BASE TEMPLATE
+=============================================================================
+This is the base template that other templates will extend.
+
+Template Inheritance in Jinja2:
+- Base template defines the common structure (HTML skeleton, navigation, etc.)
+- Child templates extend the base and override specific blocks
+- This promotes code reuse and consistent design
+
+Key Jinja2 Syntax:
+- block name ... endblock: Defines a block that can be overridden
+- variable: Outputs a variable value
+- include 'filename': Includes another template file
+- url_for('function_name'): Generates URL for a Flask route
+- url_for('static', filename='path'): Generates URL for a static file
+============================================================================= #}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for character encoding and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flask Tutorial Application - Learning Flask step by step">
+
+    <!-- Page title - Can be overridden by child templates -->
+    <title>{% block title %}Flask Tutorial{% endblock %}</title>
+
+    {# ==========================================================================
+    TOPIC 13: LINKING CSS STYLESHEET
+    ==========================================================================
+    url_for('static', filename='...') generates the correct URL for static files.
+    This is better than hardcoding '/static/style.css' because:
+    - It works correctly regardless of where the app is mounted
+    - It handles URL encoding automatically
+    ========================================================================== #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Block for additional styles in child templates -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    {# ==========================================================================
+    NAVIGATION BAR
+    ==========================================================================
+    TOPIC 9 and 10: REDIRECTING USING HYPERLINKS
+
+    url_for() is used to generate URLs dynamically:
+    - url_for('home') generates '/' (the route for the home function)
+    - url_for('register') generates '/register'
+
+    Advantages of url_for():
+    - If you change a route URL, links update automatically
+    - Handles URL encoding for special characters
+    - Works correctly even if app is mounted at a different path
+    ========================================================================== #}
+    <nav>
+        <div class="nav-container">
+            <!-- Logo/Brand - links to home page -->
+            <a href="{{ url_for('home') }}" class="logo">🌐 Flask Tutorial</a>
+
+            <!-- Navigation Links -->
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('second') }}">Second Page</a></li>
+                <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+                <li><a href="{{ url_for('upload_page') }}">Upload</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {# ==========================================================================
+    MAIN CONTENT AREA
+    ==========================================================================
+    The block content defines a block that child templates will override.
+    Each child template provides its own content for this block.
+    ========================================================================== #}
+    <main>
+        {% block content %}
+        <!-- Default content if child template doesn't override -->
+        <div class="card">
+            <h1>Welcome to Flask Tutorial</h1>
+            <p>This is the base template. Child templates will override this content.</p>
+        </div>
+        {% endblock %}
+    </main>
+
+    <!-- Footer section -->
+    <footer>
+        <p>&copy; 2024 Flask Tutorial | Made with ❤️ while learning Flask</p>
+        <p>
+            <a href="https://flask.palletsprojects.com/" target="_blank">Flask Documentation</a> |
+            <a href="https://jinja.palletsprojects.com/" target="_blank">Jinja2 Documentation</a>
+        </p>
+    </footer>
+
+    <!-- Block for JavaScript in child templates -->
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

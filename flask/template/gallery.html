@@ -1,0 +1,81 @@
+{# =============================================================================
+TOPIC 11: IMAGE GALLERY PAGE
+=============================================================================
+Displays all uploaded images from the static/images folder.
+
+Key Concepts:
+- Looping through a list in Jinja2 using for item in list
+- Referencing static files with url_for('static', filename='...')
+- Conditional rendering with if condition
+
+The 'images' list is passed from Flask:
+render_template('gallery.html', images=['image1.jpg', 'image2.png', ...])
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Image Gallery - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>🖼️ Image Gallery</h1>
+
+    <p>
+        This page displays all uploaded images from the <code>static/images</code> folder.
+        Upload new images using the <a href="{{ url_for('upload_page') }}">Upload page</a>.
+    </p>
+
+    {# =========================================================================
+    JINJA2 LOOPING AND CONDITIONALS
+    =========================================================================
+    for item in list: Iterates over each item in the list
+    if condition: Conditional rendering
+    else: Alternative if condition is false
+    endif / endfor: Required to close the block
+    ========================================================================= #}
+
+    {% if images %}
+    <!-- Display images in a grid layout -->
+    <div class="gallery">
+        {% for image in images %}
+        <div class="gallery-item">
+            <!-- 
+                        url_for('static', filename='images/' + image)
+                        Generates URL like: /static/images/photo.jpg
+                    -->
+            <img src="{{ url_for('static', filename='images/' + image) }}" alt="{{ image }}" loading="lazy">
+            <div class="caption">{{ image }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <p class="mt-3 text-center">
+        <strong>{{ images|length }}</strong> image(s) in gallery
+        <!-- |length is a Jinja2 filter that returns the length of a list -->
+    </p>
+    {% else %}
+    <!-- No images found -->
+    <div class="alert alert-info">
+        <strong>No images yet!</strong>
+        <p>Upload your first image to see it here.</p>
+    </div>
+    {% endif %}
+
+    <!-- Upload button -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('upload_page') }}" class="btn btn-success">📤 Upload New Image</a>
+    </div>
+</div>
+
+<!-- Information about static files -->
+<div class="card mt-3">
+    <h3>💡 How Static Files Work in Flask</h3>
+    <p>Flask serves static files (images, CSS, JS) from the <code>static</code> folder:</p>
+    <ul style="margin-left: 20px; color: #666;">
+        <li>Static files URL: <code>/static/filename</code></li>
+        <li>Use <code>url_for('static', filename='path')</code> to generate URLs</li>
+        <li>Images go in <code>static/images/</code></li>
+        <li>CSS files go in <code>static/</code> (like our <code>style.css</code>)</li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,17 +1,86 @@
-<!-- display all the data in the confirmation page -->
+{# =============================================================================
+CONFIRMATION PAGE
+=============================================================================
+Displays the registration data submitted by the user.
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Confirmation</h2>
-    <p>Username: {{ username }}</p>
-    <p>City: {{ city }}</p>
-    <p>Phone: {{ phone }}</p>
-    <p>Password: {{ password }}</p>
-</body>
-</html>
+This page demonstrates:
+- Receiving and displaying data passed from Flask
+- Jinja2 variable interpolation with variable syntax
+- Styling confirmation messages
+
+Data is passed from Flask like this:
+render_template('confirmation.html',
+username=username,
+city=city,
+phone=phone,
+password=password)
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Registration Confirmation - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card text-center">
+    <h1>✅ Registration Successful!</h1>
+
+    <!-- Success Alert -->
+    <div class="alert alert-success">
+        <strong>Thank you for registering!</strong>
+        <p>Your account has been created. Here are your details:</p>
+    </div>
+
+    {# =========================================================================
+    JINJA2 VARIABLE DISPLAY
+    =========================================================================
+    variable outputs the value of a variable passed from Flask.
+    If the variable is not set, it will be empty or show an error.
+    Use variable|default('fallback') to provide a default value.
+    ========================================================================= #}
+
+    {% if username %}
+    <div class="confirmation-data">
+        <p><strong>👤 Username:</strong> <span>{{ username }}</span></p>
+        <p><strong>🏙️ City:</strong> <span>{{ city }}</span></p>
+        <p><strong>📱 Phone:</strong> <span>{{ phone }}</span></p>
+        <p><strong>🔒 Password:</strong> <span>••••••••</span></p>
+        <!-- Note: Never display actual passwords! This is just for demo -->
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        <p>No registration data to display. Please <a href="{{ url_for('register') }}">register first</a>.</p>
+    </div>
+    {% endif %}
+
+    <!-- Navigation Links -->
+    <div class="nav-links" style="justify-content: center;">
+        <a href="{{ url_for('home') }}" class="btn">🏠 Go to Home</a>
+        <a href="{{ url_for('login') }}" class="btn btn-secondary">🔐 Login Now</a>
+    </div>
+</div>
+
+<!-- Code Example -->
+<div class="card mt-3">
+    <h3>💻 How Data is Passed to Templates</h3>
+    <pre style="background: #2b2d42; color: #4cc9f0; padding: 15px; border-radius: 8px; overflow-x: auto;">
+# In app.py:
+@app.route('/register', methods=['POST'])
+def register_post():
+    username = request.form['username']
+    city = request.form['city']
+    phone = request.form['phone']
+    password = request.form['password']
+    
+    # Pass variables to template
+    return render_template(
+        'confirmation.html',
+        username=username,
+        city=city,
+        phone=phone,
+        password=password
+    )
+
+# In confirmation.html:
+# Username: variable_name</pre>
+</div>
+{% endblock %}

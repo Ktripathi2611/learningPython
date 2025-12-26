@@ -1,0 +1,52 @@
+{# =============================================================================
+LOGIN PAGE
+=============================================================================
+Similar to registration, login requires form handling with POST method.
+
+Security Note: In a real application, you would:
+- Hash passwords before storing (never store plain text!)
+- Validate credentials against a database
+- Use Flask-Login or similar for session management
+- Implement CSRF protection
+============================================================================= #}
+
+{% extends 'base.html' %}
+
+{% block title %}Login - Flask Tutorial{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>🔐 Login</h1>
+
+    <p>
+        Enter your credentials to log in to your account.
+        This form demonstrates a simple login form with POST method.
+    </p>
+
+    <form action="" method="post">
+        <h2>Sign In</h2>
+
+        <!-- Username/Email Field -->
+        <div class="form-group">
+            <label for="username">👤 Username:</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your username">
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+            <label for="password">🔒 Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <input type="submit" value="Login" class="btn">
+        </div>
+    </form>
+
+    <!-- Link to registration -->
+    <p class="text-center mt-3">
+        Don't have an account? <a href="{{ url_for('register') }}">Register here</a>
+    </p>
+</div>
+{% endblock %}
