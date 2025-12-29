@@ -14,6 +14,9 @@
   - [Assignments](#assignments)
   - [DataAnalysis](#dataanalysis)
   - [postgresql](#postgresql)
+  - [RestApi](#restapi)
+  - [flask](#flask)
+  - [project-automatic-facebook-poster](#project-automatic-facebook-poster)
 - [Dependencies & Relationships](#-dependencies--relationships)
 - [Getting Started](#-getting-started)
 - [Environment Requirements](#-environment-requirements)
@@ -31,6 +34,9 @@ This repository serves as a structured learning path for Python programming. It 
 - **Advanced** – Object-Oriented Programming, Regular Expressions, and GUI development with Tkinter
 - **Data Science** – Data analysis with Pandas, NumPy, and visualization libraries
 - **Database** – PostgreSQL database connectivity and CRUD operations
+- **Web Development** – Full-stack web applications using Flask
+- **Automation** – Browser automation with Selenium
+- **REST API** – Basic API concepts
 - **Practical Exercises** – Assignments to reinforce learning
 
 ---
@@ -87,6 +93,18 @@ This repository serves as a structured learning path for Python programming. It 
 │   ├── 📄 postgresql_4.py           # Querying & extracting data
 │   ├── 📄 postgresql_5.py           # User input to database
 │   └── 📁 env/                      # Virtual environment (dependencies)
+│
+├── 📁 RestApi/                      # REST API concepts
+│   └── 📄 new.py                    # Basic API script
+│
+├── 📁 flask/                        # Flask Web Development
+│   ├── 📄 app.py                    # Main application (Tutorial)
+│   ├── 📄 requirements.txt          # Project dependencies
+│   ├── 📁 static/                   # Static files (images, css)
+│   └── 📁 template/                 # HTML templates
+│
+├── 📁 project-automatic-facebook-poster/ # Automation Projects
+│   └── 📄 facebook.py               # Selenium automation script
 │
 └── 📄 README.md                     # This documentation file
 ```
@@ -219,14 +237,59 @@ This repository serves as a structured learning path for Python programming. It 
 
 ---
 
+### RestApi
+
+> **Purpose:** Introduction to REST API concepts.
+
+| File | Description |
+|------|-------------|
+| `new.py` | Basic script demonstrating API fundamentals |
+
+---
+
+### flask
+
+> **Purpose:** Comprehensive tutorial on building web applications with Flask.
+
+| File | Description | Topics Covered |
+|------|-------------|----------------|
+| `app.py` | Main Application | Routes, Templates, Forms, File Uploads |
+| `template/` | HTML Templates | Jinja2 syntax, Template Inheritance |
+| `static/` | Static Assets | Serving images and CSS files |
+
+**Key Topics Covered in `app.py`:**
+1. **Introduction & Setup** – Flask instance, configuration
+2. **Routing** – Creating views (`/`, `/second`)
+3. **Templates** – Rendering HTML (`render_template`)
+4. **Forms** – Handling GET & POST requests
+5. **Redirection** – `redirect()` and `url_for()`
+6. **File Uploads** – Handling file storage
+7. **Static Files** – Serving images
+
+---
+
+### project-automatic-facebook-poster
+
+> **Purpose:** Browser automation and scraping using Selenium.
+
+| File | Description |
+|------|-------------|
+| `facebook.py` | Automated script to login, post updates, and logout from Facebook |
+
+**Features:**
+- 🤖 **Selenium WebDriver** – Browser control
+- 🔐 **Automated Login** – Handling credentials
+- 📝 **Auto-Posting** – Creating and submitting posts
+- 🚪 **Clean Logout** – Navigating menus programmatically
+
+---
+
 ## 🔗 Dependencies & Relationships
 
-```mermaid
-graph TD
-    A[ABasic_notes] --> B[AdvancePython]
-    A --> C[Assignments]
-    A --> D[DataAnalysis]
     A --> E[postgresql]
+    A --> F[RestApi]
+    A --> G[flask]
+    A --> H[project-automatic-facebook-poster]
     
     subgraph Fundamentals
         A1[BasicOfpython notebooks] --> A2[FileHandling]
@@ -236,6 +299,15 @@ graph TD
     subgraph Advanced
         B1[OOP] --> B3[Tkinter]
         B2[RegularExpression]
+    end
+    
+    subgraph WebDev
+        G1[flask/app.py]
+        F1[RestApi]
+    end
+    
+    subgraph Automation
+        H1[facebook.py]
     end
     
     subgraph DataScience
@@ -255,12 +327,16 @@ graph TD
     C --> Practice
     D --> DataScience
     E --> Database
+    F --> WebDev
+    G --> WebDev
+    H --> Automation
     
     A3 -.-> |"Module import"| A1
     B3 -.-> |"Uses concepts from"| B1
     C2 -.-> |"Applies"| B3
     D1 -.-> |"Uses"| A1
     E1 -.-> |"Applies"| A1
+    G1 -.-> |"Uses"| B1
 ```
 
 ### Key Relationships
@@ -303,6 +379,12 @@ cd Python
 7️⃣ Learn Data Analysis with DataAnalysis/
        ↓
 8️⃣ Explore Database operations with postgresql/
+       ↓
+9️⃣ Understand basics with RestApi/
+       ↓
+🔟 Master Web Dev with flask/app.py
+       ↓
+1️⃣1️⃣ Automate tasks with project-automatic-facebook-poster/
 ```
 
 ### 3. Running Notebooks
@@ -350,6 +432,9 @@ python postgresql_5.py  # Interactive data entry
 | pandas | Latest | Data manipulation (for DataAnalysis/) |
 | numpy | Latest | Numerical computing |
 | matplotlib | Latest | Data visualization |
+| Flask | 2.0+ | Web Framework (for flask/) |
+| Selenium | Latest | Browser Automation (for poster) |
+| webdriver-manager | Latest | Browser Driver Management |
 
 ### Installation
 
@@ -518,6 +603,17 @@ Use this checklist to track your learning progress:
 - [ ] Data Insertion (INSERT)
 - [ ] Data Querying (SELECT)
 - [ ] User Input to Database
+
+### Web Development
+- [ ] Flask Intro & Routing
+- [ ] Templates (Jinja2)
+- [ ] Forms & Request Handling
+- [ ] File Uploads
+
+### Automation
+- [ ] Selenium Setup
+- [ ] Browser Control
+- [ ] Web Elements & Interaction
 
 ### Projects
 - [ ] Complete Assignments 1-5
