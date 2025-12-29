@@ -335,6 +335,11 @@ python manage.py runserver
 
 ## 🔗 Dependencies & Relationships
 
+```mermaid
+graph TD
+    A[ABasic_notes] --> B[AdvancePython]
+    A --> C[Assignments]
+    A --> D[DataAnalysis]
     A --> E[postgresql]
     A --> F[RestApi]
     A --> G[flask]
