@@ -36,7 +36,7 @@ This repository serves as a structured learning path for Python programming. It 
 - **Database** – PostgreSQL database connectivity and CRUD operations
 - **Web Development** – Full-stack web applications using Flask
 - **Automation** – Browser automation with Selenium
-- **REST API** – Basic API concepts
+- **REST API** – Django REST Framework with blog API project
 - **Practical Exercises** – Assignments to reinforce learning
 
 ---
@@ -94,8 +94,19 @@ This repository serves as a structured learning path for Python programming. It 
 │   ├── 📄 postgresql_5.py           # User input to database
 │   └── 📁 env/                      # Virtual environment (dependencies)
 │
-├── 📁 RestApi/                      # REST API concepts
-│   └── 📄 new.py                    # Basic API script
+├── 📁 RestApi/                      # Django REST Framework
+│   └── 📁 blog/                     # Blog API Project
+│       ├── 📄 manage.py             # Django management script
+│       ├── 📄 db.sqlite3            # SQLite database
+│       ├── 📁 blog/                 # Project settings
+│       │   ├── 📄 settings.py       # Django configuration
+│       │   ├── 📄 urls.py           # URL routing
+│       │   └── 📄 wsgi.py           # WSGI config
+│       └── 📁 helloworld/           # Blog app
+│           ├── 📄 models.py         # Post model
+│           ├── 📄 views.py          # API views
+│           ├── 📄 permissions.py    # Custom permissions
+│           └── 📄 admin.py          # Admin registration
 │
 ├── 📁 flask/                        # Flask Web Development
 │   ├── 📄 app.py                    # Main application (Tutorial)
@@ -239,11 +250,49 @@ This repository serves as a structured learning path for Python programming. It 
 
 ### RestApi
 
-> **Purpose:** Introduction to REST API concepts.
+> **Purpose:** Learn REST API development with Django REST Framework (DRF).
 
-| File | Description |
+This directory contains a complete **Blog API** project built with Django and DRF.
+
+#### Project Structure
+
+| Path | Description |
 |------|-------------|
-| `new.py` | Basic script demonstrating API fundamentals |
+| `blog/manage.py` | Django CLI for running server, migrations, etc. |
+| `blog/blog/settings.py` | Project configuration (apps, middleware, database) |
+| `blog/blog/urls.py` | URL routing for the API |
+| `blog/helloworld/models.py` | `Post` model with title, content, author, timestamps |
+| `blog/helloworld/views.py` | API views using DRF generics |
+| `blog/helloworld/permissions.py` | Custom permission classes |
+| `blog/db.sqlite3` | SQLite database with sample data |
+
+#### Key Topics Covered
+
+| Topic | Description |
+|-------|-------------|
+| **Models** | Django ORM with `Post` model (ForeignKey to User) |
+| **Serializers** | Converting model instances to JSON |
+| **Generic Views** | `ListCreateAPIView`, `RetrieveUpdateDestroyAPIView` |
+| **Permissions** | `IsAuthenticated`, `IsAuthenticatedOrReadOnly`, Custom `IsAuthorOrReadOnly` |
+| **Filtering** | `DjangoFilterBackend`, `SearchFilter`, `OrderingFilter` |
+| **Authentication** | Session-based auth with REST framework |
+
+#### API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/hello/` | GET | Welcome message with API info |
+| `/post/` | GET | List all posts (with filtering/search) |
+| `/post/` | POST | Create new post (auth required) |
+| `/post/<id>/` | GET/PUT/DELETE | Retrieve, update, or delete a post |
+
+#### Running the Project
+
+```bash
+cd RestApi/blog
+python manage.py runserver
+# Visit http://127.0.0.1:8000/hello/
+```
 
 ---
 
@@ -380,7 +429,7 @@ cd Python
        ↓
 8️⃣ Explore Database operations with postgresql/
        ↓
-9️⃣ Understand basics with RestApi/
+9️⃣ Build REST APIs with RestApi/blog (Django REST Framework)
        ↓
 🔟 Master Web Dev with flask/app.py
        ↓
@@ -433,6 +482,9 @@ python postgresql_5.py  # Interactive data entry
 | numpy | Latest | Numerical computing |
 | matplotlib | Latest | Data visualization |
 | Flask | 2.0+ | Web Framework (for flask/) |
+| Django | 4.0+ | Web Framework (for RestApi/) |
+| djangorestframework | 3.14+ | REST API toolkit for Django |
+| django-filter | Latest | Filtering for DRF |
 | Selenium | Latest | Browser Automation (for poster) |
 | webdriver-manager | Latest | Browser Driver Management |
 
@@ -456,6 +508,15 @@ pip install psycopg2-binary
 
 # For PostgreSQL database:
 # Download and install from: https://www.postgresql.org/download/
+
+# Install Flask
+pip install flask
+
+# Install Django REST Framework dependencies
+pip install django djangorestframework django-filter
+
+# Install Selenium for automation
+pip install selenium webdriver-manager
 ```
 
 ### Recommended IDE/Editors
@@ -615,11 +676,20 @@ Use this checklist to track your learning progress:
 - [ ] Browser Control
 - [ ] Web Elements & Interaction
 
+### REST API (Django)
+- [ ] Django Project Setup
+- [ ] Models & Migrations
+- [ ] Serializers
+- [ ] API Views (Generic Views)
+- [ ] Permissions & Authentication
+- [ ] Filtering & Searching
+
 ### Projects
 - [ ] Complete Assignments 1-5
 - [ ] Build Calculator App (Assignment 6)
 - [ ] Complete Data Analysis Notebook
 - [ ] Build Database-Connected Application
+- [ ] Build Blog REST API
 
 ---
 
