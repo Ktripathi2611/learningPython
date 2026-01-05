@@ -17,6 +17,8 @@
   - [RestApi](#restapi)
   - [flask](#flask)
   - [project-automatic-facebook-poster](#project-automatic-facebook-poster)
+  - [webScrapping](#webscrapping)
+  - [Standalone Scripts](#standalone-scripts)
 - [Dependencies & Relationships](#-dependencies--relationships)
 - [Getting Started](#-getting-started)
 - [Environment Requirements](#-environment-requirements)
@@ -37,6 +39,7 @@ This repository serves as a structured learning path for Python programming. It 
 - **Web Development** – Full-stack web applications using Flask
 - **Automation** – Browser automation with Selenium
 - **REST API** – Django REST Framework with blog API project
+- **Web Scraping** – Price tracking and data extraction
 - **Practical Exercises** – Assignments to reinforce learning
 
 ---
@@ -116,6 +119,10 @@ This repository serves as a structured learning path for Python programming. It 
 │
 ├── 📁 project-automatic-facebook-poster/ # Automation Projects
 │   └── 📄 facebook.py               # Selenium automation script
+│
+├── 📁 webScrapping/                  # Web Scraping (In Progress)
+│
+├── 📄 pricetracker.py                # Amazon Price Tracker Script
 │
 └── 📄 README.md                     # This documentation file
 ```
@@ -333,6 +340,43 @@ python manage.py runserver
 
 ---
 
+### webScrapping
+
+> **Purpose:** Web scraping projects and tutorials (directory in progress).
+
+*This directory is being set up for web scraping projects. Content coming soon!*
+
+---
+
+### Standalone Scripts
+
+> **Purpose:** Individual utility scripts in the root directory.
+
+| File | Description | Technologies |
+|------|-------------|---------------|
+| `pricetracker.py` | Amazon product price tracker | `requests`, `BeautifulSoup` |
+
+#### pricetracker.py
+
+A web scraping script to track Amazon product prices.
+
+**Features:**
+- 🏷️ **Product Title Extraction** – Gets product name from Amazon page
+- 💰 **Price Tracking** – Extracts current price (handles multiple price formats)
+- 🔄 **User-Agent Spoofing** – Mimics browser to avoid blocking
+- 📦 **OOP Design** – Clean `PriceTracker` class structure
+
+**Usage:**
+```python
+from pricetracker import PriceTracker
+
+tracker = PriceTracker("https://www.amazon.in/product-url")
+print(tracker.product_title())
+print(tracker.product_price())
+```
+
+---
+
 ## 🔗 Dependencies & Relationships
 
 ```mermaid
@@ -344,6 +388,7 @@ graph TD
     A --> F[RestApi]
     A --> G[flask]
     A --> H[project-automatic-facebook-poster]
+    A --> I[webScrapping]
     
     subgraph Fundamentals
         A1[BasicOfpython notebooks] --> A2[FileHandling]
@@ -362,6 +407,10 @@ graph TD
     
     subgraph Automation
         H1[facebook.py]
+    end
+    
+    subgraph Scraping
+        I1[pricetracker.py]
     end
     
     subgraph DataScience
@@ -384,6 +433,7 @@ graph TD
     F --> WebDev
     G --> WebDev
     H --> Automation
+    I --> Scraping
     
     A3 -.-> |"Module import"| A1
     B3 -.-> |"Uses concepts from"| B1
@@ -492,6 +542,8 @@ python postgresql_5.py  # Interactive data entry
 | django-filter | Latest | Filtering for DRF |
 | Selenium | Latest | Browser Automation (for poster) |
 | webdriver-manager | Latest | Browser Driver Management |
+| requests | Latest | HTTP requests (for web scraping) |
+| beautifulsoup4 | Latest | HTML parsing (for web scraping) |
 
 ### Installation
 
@@ -522,6 +574,9 @@ pip install django djangorestframework django-filter
 
 # Install Selenium for automation
 pip install selenium webdriver-manager
+
+# Install Web Scraping libraries
+pip install requests beautifulsoup4
 ```
 
 ### Recommended IDE/Editors
@@ -689,12 +744,19 @@ Use this checklist to track your learning progress:
 - [ ] Permissions & Authentication
 - [ ] Filtering & Searching
 
+### Web Scraping
+- [ ] HTTP Requests with `requests`
+- [ ] HTML Parsing with BeautifulSoup
+- [ ] Data Extraction Techniques
+- [ ] Price Tracker Implementation
+
 ### Projects
 - [ ] Complete Assignments 1-5
 - [ ] Build Calculator App (Assignment 6)
 - [ ] Complete Data Analysis Notebook
 - [ ] Build Database-Connected Application
 - [ ] Build Blog REST API
+- [ ] Build Price Tracker Tool
 
 ---
 
