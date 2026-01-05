@@ -18,7 +18,6 @@
   - [flask](#flask)
   - [project-automatic-facebook-poster](#project-automatic-facebook-poster)
   - [webScrapping](#webscrapping)
-  - [Standalone Scripts](#standalone-scripts)
 - [Dependencies & Relationships](#-dependencies--relationships)
 - [Getting Started](#-getting-started)
 - [Environment Requirements](#-environment-requirements)
@@ -120,9 +119,8 @@ This repository serves as a structured learning path for Python programming. It 
 ├── 📁 project-automatic-facebook-poster/ # Automation Projects
 │   └── 📄 facebook.py               # Selenium automation script
 │
-├── 📁 webScrapping/                  # Web Scraping (In Progress)
-│
-├── 📄 pricetracker.py                # Amazon Price Tracker Script
+├── 📁 webScrapping/                  # Web Scraping Projects
+│   └── 📄 pricetracker.py            # Amazon Price Tracker Script
 │
 └── 📄 README.md                     # This documentation file
 ```
@@ -342,18 +340,10 @@ python manage.py runserver
 
 ### webScrapping
 
-> **Purpose:** Web scraping projects and tutorials (directory in progress).
-
-*This directory is being set up for web scraping projects. Content coming soon!*
-
----
-
-### Standalone Scripts
-
-> **Purpose:** Individual utility scripts in the root directory.
+> **Purpose:** Web scraping projects for data extraction from websites.
 
 | File | Description | Technologies |
-|------|-------------|---------------|
+|------|-------------|--------------|
 | `pricetracker.py` | Amazon product price tracker | `requests`, `BeautifulSoup` |
 
 #### pricetracker.py
@@ -368,7 +358,7 @@ A web scraping script to track Amazon product prices.
 
 **Usage:**
 ```python
-from pricetracker import PriceTracker
+from webScrapping.pricetracker import PriceTracker
 
 tracker = PriceTracker("https://www.amazon.in/product-url")
 print(tracker.product_title())
