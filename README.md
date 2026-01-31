@@ -12,7 +12,10 @@
   - [ABasic_notes](#abasic_notes)
   - [AdvancePython](#advancepython)
   - [Assignments](#assignments)
+  - [AUTOMATION WITH SELENIUM](#automation-with-selenium)
+  - [ChatApp](#chatapp)
   - [DataAnalysis](#dataanalysis)
+  - [Open CV](#open-cv)
   - [postgresql](#postgresql)
   - [RestApi](#restapi)
   - [flask](#flask)
@@ -85,8 +88,27 @@ This repository serves as a structured learning path for Python programming. It 
 │   ├── 📄 Assignment5.ipynb         # File handling tasks
 │   └── 📄 Assignment6.py            # Tkinter calculator project
 │
+├── 📁 AUTOMATION WITH SELENIUM/     # Browser automation tutorials
+│   └── 📄 automation.py             # Selenium WebDriver demo script
+│
+├── 📁 ChatApp/                      # Socket programming project
+│   ├── 📄 server.py                 # TCP chat server with threading
+│   └── 📄 client.py                 # Tkinter GUI chat client
+│
 ├── 📁 DataAnalysis/                 # Data Science & Analytics
 │   └── 📄 DataAnalysis_Complete.ipynb  # Comprehensive data analysis tutorial
+│
+├── 📁 Open CV/                      # Computer Vision tutorials
+│   ├── 📄 01_setup_and_io.py        # Image reading, display, save
+│   ├── 📄 02_resize_and_flip.py     # Image resizing and flipping
+│   ├── 📄 03_morphology.py          # Erosion and dilation ops
+│   ├── 📄 04_draw_transform.py      # Drawing shapes, transformations
+│   ├── 📄 05_threshold_and_blur.py  # Thresholding and blur filters
+│   ├── 📄 06_edges.py               # Edge detection (Canny)
+│   ├── 📄 07_video_io.py            # Video file processing
+│   ├── 📄 08_webcam.py              # Webcam capture and display
+│   ├── 📄 README.md                 # OpenCV learning guide
+│   └── 📄 requirements.txt          # opencv-python, numpy
 │
 ├── 📁 postgresql/                   # Database connectivity
 │   ├── 📄 postgresql_1.py           # Database connection basics
@@ -209,7 +231,139 @@ This repository serves as a structured learning path for Python programming. It 
 
 ---
 
+### AUTOMATION WITH SELENIUM
+
+> **Purpose:** Learn browser automation and web testing using Selenium WebDriver.
+
+| File | Description |
+|------|-------------|
+| `automation.py` | Comprehensive Selenium tutorial demonstrating web automation |
+
+**Key Concepts Covered:**
+
+| Concept | Description |
+|---------|-------------|
+| **WebDriver Setup** | Chrome options, driver initialization |
+| **Element Location** | Finding elements by ID, NAME, TAG_NAME, LINK_TEXT |
+| **Explicit Waits** | `WebDriverWait` with `expected_conditions` |
+| **User Simulation** | Click, type, keyboard actions (`Keys.RETURN`) |
+| **Human-like Delays** | Random delays to mimic user behavior |
+| **Page Navigation** | URL navigation, title/URL extraction |
+
+**Example Workflow:**
+```python
+# Initialize driver
+driver = webdriver.Chrome(options=options)
+wait = WebDriverWait(driver, 15)
+
+# Find and interact with elements
+search_box = wait.until(EC.element_to_be_clickable((By.NAME, "q")))
+search_box.send_keys("Selenium Python tutorial")
+search_box.send_keys(Keys.RETURN)
+```
+
+**Running the Script:**
+```bash
+pip install selenium webdriver-manager
+python "AUTOMATION WITH SELENIUM/automation.py"
+```
+
+---
+
+### ChatApp
+
+> **Purpose:** Learn network programming with Python sockets and build a real-time chat application with GUI.
+
+| File | Description | Technologies |
+|------|-------------|--------------|
+| `server.py` | TCP chat server with multi-threading | `socket`, `threading` |
+| `client.py` | GUI chat client application | `socket`, `tkinter`, `threading` |
+
+**Architecture:**
+
+```
+┌─────────────────┐         ┌─────────────────┐
+│   Client GUI    │◄───────►│   Server        │
+│   (Tkinter)     │   TCP   │   (Threading)   │
+│                 │         │                 │
+│ • Send messages │         │ • Listen on port│
+│ • Receive msgs  │         │ • Relay messages│
+│ • ScrolledText  │         │ • Handle clients│
+└─────────────────┘         └─────────────────┘
+```
+
+**Key Features:**
+
+| Component | Features |
+|-----------|----------|
+| **Server** | TCP socket binding, threading for concurrent I/O, message buffering |
+| **Client** | Tkinter GUI with ScrolledText, real-time message display, Enter key binding |
+
+**Running the Chat App:**
+
+```bash
+# Terminal 1: Start the server
+python ChatApp/server.py
+
+# Terminal 2: Start the client
+python ChatApp/client.py
+```
+
+---
+
+### Open CV
+
+> **Purpose:** Learn computer vision fundamentals with OpenCV through 8 progressive Python scripts.
+
+| File | Topics | Description |
+|------|--------|-------------|
+| `01_setup_and_io.py` | Topics 1-5 | Reading, displaying, and saving images |
+| `02_resize_and_flip.py` | Topics 6, 9-11 | Image resizing and flipping operations |
+| `03_morphology.py` | Topics 7-8 | Morphological operations (erosion, dilation) |
+| `04_draw_transform.py` | Topics 12-14 | Drawing shapes, image transformations |
+| `05_threshold_and_blur.py` | Topics 15-18 | Thresholding and blur filters |
+| `06_edges.py` | Topic 19 | Edge detection (Canny) |
+| `07_video_io.py` | Topics 20-21 | Video file processing |
+| `08_webcam.py` | Topic 22 | Webcam capture and real-time processing |
+| `README.md` | — | OpenCV learning guide |
+| `requirements.txt` | — | Dependencies: opencv-python, numpy |
+
+**Learning Path:**
+
+```
+1️⃣ Image I/O (read, display, save)
+       ↓
+2️⃣ Basic Operations (resize, flip)
+       ↓
+3️⃣ Morphology (erosion, dilation)
+       ↓
+4️⃣ Drawing & Transforms
+       ↓
+5️⃣ Filters (threshold, blur)
+       ↓
+6️⃣ Edge Detection
+       ↓
+7️⃣ Video Processing
+       ↓
+8️⃣ Webcam Access
+```
+
+**Setup & Running:**
+
+```bash
+cd "Open CV"
+pip install -r requirements.txt
+python 01_setup_and_io.py
+```
+
+> [!TIP]
+> **BGR vs RGB**: OpenCV reads colors as Blue-Green-Red (BGR), not RGB.
+> **Exit Windows**: Press 'q' or any key (where specified) to close display windows.
+
+---
+
 ### DataAnalysis
+
 
 > **Purpose:** Learn data science fundamentals including data manipulation, analysis, and visualization.
 
@@ -379,6 +533,9 @@ graph TD
     A --> G[flask]
     A --> H[project-automatic-facebook-poster]
     A --> I[webScrapping]
+    A --> J[ChatApp]
+    A --> K[AUTOMATION WITH SELENIUM]
+    A --> L[Open CV]
     
     subgraph Fundamentals
         A1[BasicOfpython notebooks] --> A2[FileHandling]
@@ -424,6 +581,9 @@ graph TD
     G --> WebDev
     H --> Automation
     I --> Scraping
+    J --> Networking
+    K --> BrowserAuto
+    L --> ComputerVision
     
     A3 -.-> |"Module import"| A1
     B3 -.-> |"Uses concepts from"| B1
@@ -431,6 +591,19 @@ graph TD
     D1 -.-> |"Uses"| A1
     E1 -.-> |"Applies"| A1
     G1 -.-> |"Uses"| B1
+    J1 -.-> |"Uses"| B3
+    
+    subgraph Networking
+        J1[ChatApp] 
+    end
+    
+    subgraph BrowserAuto
+        K1[automation.py]
+    end
+    
+    subgraph ComputerVision
+        L1[OpenCV modules]
+    end
 ```
 
 ### Key Relationships
@@ -443,6 +616,9 @@ graph TD
 | `FileHandling/` | `*.txt`, `*.json`, `*.pkl` | Practice files used by `fileHandling.ipynb` |
 | `DataAnalysis/` | `ABasic_notes/` | Uses Python fundamentals for data science |
 | `postgresql/` | `ABasic_notes/` | Applies Python basics for database operations |
+| `ChatApp/client.py` | `Tkinter/` | Uses Tkinter for GUI, threading for async I/O |
+| `AUTOMATION WITH SELENIUM/` | `ABasic_notes/` | Applies Python basics with Selenium library |
+| `Open CV/` | `ABasic_notes/` | Uses Python fundamentals for image processing |
 
 ---
 
@@ -534,6 +710,7 @@ python postgresql_5.py  # Interactive data entry
 | webdriver-manager | Latest | Browser Driver Management |
 | requests | Latest | HTTP requests (for web scraping) |
 | beautifulsoup4 | Latest | HTML parsing (for web scraping) |
+| opencv-python | Latest | Computer Vision (for Open CV/) |
 
 ### Installation
 
@@ -567,6 +744,9 @@ pip install selenium webdriver-manager
 
 # Install Web Scraping libraries
 pip install requests beautifulsoup4
+
+# Install OpenCV for computer vision
+pip install opencv-python numpy
 ```
 
 ### Recommended IDE/Editors
@@ -740,6 +920,22 @@ Use this checklist to track your learning progress:
 - [ ] Data Extraction Techniques
 - [ ] Price Tracker Implementation
 
+### Computer Vision (OpenCV)
+- [ ] Image I/O (read, display, save)
+- [ ] Resize and Flip Operations
+- [ ] Morphological Operations
+- [ ] Drawing and Transformations
+- [ ] Thresholding and Blur Filters
+- [ ] Edge Detection
+- [ ] Video Processing
+- [ ] Webcam Access
+
+### Networking (Sockets)
+- [ ] TCP Socket Basics
+- [ ] Server/Client Architecture
+- [ ] Threading for Concurrent I/O
+- [ ] GUI Integration with Tkinter
+
 ### Projects
 - [ ] Complete Assignments 1-5
 - [ ] Build Calculator App (Assignment 6)
@@ -747,6 +943,8 @@ Use this checklist to track your learning progress:
 - [ ] Build Database-Connected Application
 - [ ] Build Blog REST API
 - [ ] Build Price Tracker Tool
+- [ ] Build Chat Application
+- [ ] Complete OpenCV Tutorial Series
 
 ---
 
