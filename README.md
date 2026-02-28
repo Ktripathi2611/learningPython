@@ -21,7 +21,8 @@
   - [postgresql](#10-postgresql--database-programming)
   - [project-automatic-facebook-poster](#11-project-automatic-facebook-poster--social-media-automation)
   - [RestApi](#12-restapi--django-rest-framework)
-  - [webScrapping](#13-webscrapping--web-scraping)
+  - [SystemDesign](#13-systemdesign--system-design-mini-projects)
+  - [webScrapping](#14-webscrapping--web-scraping)
 - [Dependencies & Environment Setup](#-dependencies--environment-setup)
 - [Inter-Directory Dependencies](#-inter-directory-dependencies)
 - [Best Practices for Contributing](#-best-practices-for-contributing)
@@ -35,8 +36,8 @@ This repository is a structured collection of Python learning materials, project
 
 | Metric | Value |
 |---|---|
-| **Total Directories** | 13 top-level + nested subdirectories |
-| **Topics Covered** | Python basics, OOP, Regex, Tkinter, Flask, Django REST, PostgreSQL, OpenCV, Selenium, Sockets, Data Analysis, Web Scraping |
+| **Total Directories** | 14 top-level + nested subdirectories |
+| **Topics Covered** | Python basics, OOP, Regex, Tkinter, Flask, Django REST, PostgreSQL, OpenCV, Selenium, Sockets, Data Analysis, Web Scraping, System Design |
 | **Python Version** | 3.8+ recommended |
 | **IDE** | Any (VS Code recommended) |
 
@@ -159,6 +160,20 @@ python/
 │           ├── permissions.py          # Custom permissions
 │           ├── admin.py                # Admin registration
 │           └── 📂 migrations/         # Database migrations
+│
+├── 📂 SystemDesign/                    # System design concepts
+│   ├── README.md                       # Assignment documentation
+│   ├── requirements.txt                # flask, requests
+│   ├── 📂 task1_url_shortener/
+│   │   ├── app.py                      # URL shortener (Flask + SQLite + Base62)
+│   │   └── urls.db                     # SQLite database for URLs
+│   ├── 📂 task2_rate_limiter/
+│   │   └── app.py                      # Sliding-window rate limiter
+│   └── 📂 task3_load_balancer/
+│       ├── load_balancer.py            # Round-robin load balancer
+│       ├── server1.py                  # Mock backend server (port 5001)
+│       ├── server2.py                  # Mock backend server (port 5002)
+│       └── server3.py                  # Mock backend server (port 5003)
 │
 ├── 📂 webScrapping/                    # Web scraping
 │   └── pricetracker.py                 # Amazon price tracker
@@ -450,7 +465,45 @@ python manage.py runserver
 
 ---
 
-### 13. `webScrapping` — Web Scraping
+### 13. `SystemDesign` — System Design Mini-Projects
+
+**Purpose:** Three hands-on mini-projects demonstrating core system design concepts — URL shortening, rate limiting, and load balancing — all built with Python and Flask.
+
+#### Sub-Projects
+
+| Sub-Directory | Concept | Key Files | Description |
+|---|---|---|---|
+| `task1_url_shortener/` | API Design, Data Storage | `app.py`, `urls.db` | Flask app with SQLite backend using Base62 encoding to generate short URLs |
+| `task2_rate_limiter/` | Rate Limiting | `app.py` | Sliding-window rate limiter — allows 5 requests per 10-second window, returns 429 on exceeded limits |
+| `task3_load_balancer/` | Load Balancing | `load_balancer.py`, `server1-3.py` | Round-robin load balancer distributing traffic across 3 mock Flask backend servers |
+
+**Dependencies:** `flask`, `requests`
+
+**Usage:**
+
+```bash
+cd SystemDesign
+pip install -r requirements.txt
+
+# Task 1 — URL Shortener
+python task1_url_shortener/app.py
+curl -X POST http://localhost:5000/shorten -H "Content-Type: application/json" -d "{\"url\": \"https://www.google.com\"}"
+
+# Task 2 — Rate Limiter
+python task2_rate_limiter/app.py
+curl http://localhost:5001/data   # 6th rapid request → 429
+
+# Task 3 — Load Balancer (4 terminals)
+python task3_load_balancer/server1.py
+python task3_load_balancer/server2.py
+python task3_load_balancer/server3.py
+python task3_load_balancer/load_balancer.py
+curl http://localhost:5000/   # Cycles: Server 1 → 2 → 3 → 1 → ...
+```
+
+---
+
+### 14. `webScrapping` — Web Scraping
 
 **Purpose:** Amazon product price tracker using BeautifulSoup — extracts product titles and prices from Amazon product pages.
 
@@ -531,6 +584,8 @@ graph LR
     A -->|Data types for| K[postgresql]
     A -->|numpy/pandas for| L[DataAnalysis]
     A -->|numpy for| M[Open CV]
+    B -->|OOP & API design in| N[SystemDesign]
+    F -->|Flask patterns in| N
 ```
 
 | Source Directory | Depends On | Relationship |
@@ -543,6 +598,7 @@ graph LR
 | `RestApi/` | `ABasic_notes/`, `AdvancePython/` | Uses OOP, modules, decorators |
 | `webScrapping/` | `AdvancePython/` | Uses OOP class design |
 | `project-automatic-facebook-poster/` | `AUTOMATION WITH SELENIUM/` | Same Selenium patterns |
+| `SystemDesign/` | `AdvancePython/`, `flask/` | Uses OOP, Flask routing, API design patterns |
 | `Open CV/` | `ABasic_notes/` | Uses numpy, file I/O |
 | `DataAnalysis/` | `ABasic_notes/` | Uses data structures, numpy |
 
