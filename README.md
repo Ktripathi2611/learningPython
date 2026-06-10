@@ -520,30 +520,183 @@ pip install requests beautifulsoup4
 
 ---
 
-## 🔗 Dependency Map
+## 🔗 Dependency & Connection Map
 
-The diagram below shows how directories relate to each other:
+### 🗺️ Complete Python Learning Ecosystem
+
+The diagram below maps **every directory** in this repository, grouped by skill tier, with all knowledge-flow and shared-library connections:
 
 ```mermaid
-graph TD
-    A[ABasic_notes] -->|foundations for| B[Assignments]
-    A -->|foundations for| C[AdvancePython]
-    A -->|file I/O concepts used in| D[Dev-ops]
-    C -->|OOP used in| E[flask]
-    C -->|OOP used in| F[RestApi]
-    C -->|Tkinter used in| G[ChatApp]
-    E -->|Flask framework used in| H[SystemDesign]
-    I[MachineLearning] -->|numpy/pandas used in| J[DataAnalysis]
-    I -->|numpy used in| K[Open CV]
-    L[AUTOMATION WITH SELENIUM] -->|Selenium also used in| M[project-automatic-facebook-poster]
-    N[webScrapping] -.->|requests library shared| H
+graph TB
+    %% ────────────────────────────────────────
+    %% TIER 1 — BEGINNER (Green)
+    %% ────────────────────────────────────────
+    subgraph BEGINNER ["🟢 BEGINNER — Python Foundations"]
+        direction LR
+        A["📓 ABasic_notes<br/><i>Variables, Loops,<br/>Functions, Collections</i>"]
+        A_FH["📂 FileHandling<br/><i>Text, JSON, Pickle I/O</i>"]
+        A_UM["📂 Userdefine_module<br/><i>Custom Modules &amp; Imports</i>"]
+        B["📝 Assignments<br/><i>6 Practice Exercises</i>"]
+        D["⚙️ Dev-ops<br/><i>Scripting &amp; File I/O</i>"]
 
-    style A fill:#4CAF50,color:#fff
-    style C fill:#2196F3,color:#fff
-    style E fill:#FF9800,color:#fff
-    style H fill:#F44336,color:#fff
-    style I fill:#9C27B0,color:#fff
+        A --- A_FH
+        A --- A_UM
+    end
+
+    %% ────────────────────────────────────────
+    %% TIER 2 — INTERMEDIATE (Blue)
+    %% ────────────────────────────────────────
+    subgraph INTERMEDIATE ["🟡 INTERMEDIATE — Advanced Python"]
+        direction LR
+        C["🔷 AdvancePython"]
+        C_OOP["📂 OOP<br/><i>Classes, Inheritance,<br/>Polymorphism</i>"]
+        C_RE["📂 RegularExpression<br/><i>Pattern Matching</i>"]
+        C_TK["📂 Tkinter<br/><i>GUI Programming</i>"]
+        PG["🐘 postgresql<br/><i>psycopg2, CRUD,<br/>Transactions</i>"]
+
+        C --- C_OOP
+        C --- C_RE
+        C --- C_TK
+    end
+
+    %% ────────────────────────────────────────
+    %% TIER 3 — ADVANCED (Orange/Red)
+    %% ────────────────────────────────────────
+    subgraph ADVANCED ["🔴 ADVANCED — Frameworks & Domains"]
+        direction LR
+        I["📊 MachineLearning<br/><i>NumPy, Pandas,<br/>Matplotlib</i>"]
+        I_LR["📂 LinearRegression<br/><i>Supervised ML</i>"]
+        E["🌶️ flask<br/><i>Routing, Templates,<br/>Forms, Uploads</i>"]
+        F["🔌 RestApi<br/><i>Django REST Framework<br/>Blog API</i>"]
+        G["💬 ChatApp<br/><i>TCP Sockets +<br/>Tkinter GUI</i>"]
+        J["📈 DataAnalysis<br/><i>End-to-End Analysis</i>"]
+        K["👁️ Open CV<br/><i>8-Lesson CV Tutorial</i>"]
+
+        I --- I_LR
+    end
+
+    %% ────────────────────────────────────────
+    %% TIER 4 — PROJECTS (Purple)
+    %% ────────────────────────────────────────
+    subgraph PROJECTS ["⚫ PROJECTS — Real-World Applications"]
+        direction LR
+        H["🏗️ SystemDesign<br/><i>URL Shortener,<br/>Rate Limiter,<br/>Load Balancer</i>"]
+        L["🤖 Selenium Automation<br/><i>Google Search Bot</i>"]
+        M["📱 Facebook Poster<br/><i>Auto Login &amp; Post</i>"]
+        N["🕷️ webScrapping<br/><i>Amazon Price Tracker</i>"]
+    end
+
+    %% ────────────────────────────────────────
+    %% KNOWLEDGE-FLOW CONNECTIONS (solid arrows)
+    %% ────────────────────────────────────────
+    A ==>|"syntax &amp; data types"| C
+    A ==>|"practice exercises"| B
+    A -->|"file I/O concepts"| D
+    A_FH -->|"file ops reused"| D
+
+    C_OOP -->|"OOP patterns"| E
+    C_OOP -->|"Models &amp; Views"| F
+    C_OOP -->|"class-based client"| G
+    C_TK -->|"GUI framework"| G
+    C_RE -->|"validation patterns"| E
+    C_RE -->|"input parsing"| N
+
+    A -->|"core Python"| PG
+    A -->|"core Python"| I
+
+    I -->|"numpy arrays"| K
+    I -->|"pandas + matplotlib"| J
+    I_LR -->|"ML concepts"| J
+
+    E -->|"Flask framework"| H
+    PG -.->|"DB concepts"| F
+
+    L -->|"Selenium patterns"| M
+
+    %% ────────────────────────────────────────
+    %% SHARED LIBRARY CONNECTIONS (dotted arrows)
+    %% ────────────────────────────────────────
+    N -.->|"requests lib"| H
+    N -.->|"BeautifulSoup + requests"| L
+
+    %% ────────────────────────────────────────
+    %% STYLES
+    %% ────────────────────────────────────────
+    style BEGINNER fill:#E8F5E9,stroke:#4CAF50,stroke-width:2px
+    style INTERMEDIATE fill:#E3F2FD,stroke:#2196F3,stroke-width:2px
+    style ADVANCED fill:#FFF3E0,stroke:#FF9800,stroke-width:2px
+    style PROJECTS fill:#F3E5F5,stroke:#9C27B0,stroke-width:2px
+
+    style A fill:#4CAF50,color:#fff,stroke:#388E3C
+    style B fill:#66BB6A,color:#fff,stroke:#388E3C
+    style D fill:#81C784,color:#fff,stroke:#388E3C
+    style C fill:#2196F3,color:#fff,stroke:#1565C0
+    style PG fill:#42A5F5,color:#fff,stroke:#1565C0
+    style I fill:#FF9800,color:#fff,stroke:#E65100
+    style E fill:#FFA726,color:#fff,stroke:#E65100
+    style F fill:#FF7043,color:#fff,stroke:#BF360C
+    style G fill:#AB47BC,color:#fff,stroke:#6A1B9A
+    style J fill:#FFB74D,color:#fff,stroke:#E65100
+    style K fill:#EF5350,color:#fff,stroke:#B71C1C
+    style H fill:#7E57C2,color:#fff,stroke:#4527A0
+    style L fill:#8E24AA,color:#fff,stroke:#4A148C
+    style M fill:#AB47BC,color:#fff,stroke:#4A148C
+    style N fill:#CE93D8,color:#000,stroke:#4A148C
 ```
+
+---
+
+### 🛤️ Recommended Learning Path Flow
+
+Follow the numbered path for a structured progression:
+
+```mermaid
+graph LR
+    S1["1️⃣<br/>ABasic_notes"]:::green
+    S2["2️⃣<br/>Assignments"]:::green
+    S3["3️⃣<br/>AdvancePython"]:::blue
+    S4["4️⃣<br/>Dev-ops"]:::green
+    S5["5️⃣<br/>MachineLearning"]:::orange
+    S6["6️⃣<br/>DataAnalysis"]:::orange
+    S7["7️⃣<br/>flask"]:::orange
+    S8["8️⃣<br/>RestApi"]:::red
+    S9["9️⃣<br/>postgresql"]:::blue
+    S10["🔟<br/>SystemDesign"]:::purple
+    S11["1️⃣1️⃣<br/>Open CV"]:::red
+    S12["1️⃣2️⃣<br/>ChatApp"]:::purple
+    S13["1️⃣3️⃣<br/>webScrapping"]:::purple
+    S14["1️⃣4️⃣<br/>Selenium"]:::purple
+
+    S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7 --> S8 --> S9 --> S10 --> S11 --> S12 --> S13 --> S14
+
+    classDef green fill:#4CAF50,color:#fff,stroke:#388E3C,stroke-width:2px
+    classDef blue fill:#2196F3,color:#fff,stroke:#1565C0,stroke-width:2px
+    classDef orange fill:#FF9800,color:#fff,stroke:#E65100,stroke-width:2px
+    classDef red fill:#F44336,color:#fff,stroke:#B71C1C,stroke-width:2px
+    classDef purple fill:#9C27B0,color:#fff,stroke:#4A148C,stroke-width:2px
+```
+
+---
+
+### 📦 Shared Library Matrix
+
+Which Python libraries are used across directories:
+
+| Library | ABasic | Advance | ML | DataAnalysis | OpenCV | Flask | RestApi | SystemDesign | Selenium | WebScrape | PostgreSQL | ChatApp |
+|:--------|:------:|:-------:|:--:|:------------:|:------:|:-----:|:-------:|:------------:|:--------:|:---------:|:----------:|:-------:|
+| **numpy** | | | ✅ | ✅ | ✅ | | | | | | | |
+| **pandas** | | | ✅ | ✅ | | | | | | | | |
+| **matplotlib** | | | ✅ | ✅ | | | | | | | | |
+| **flask** | | | | | | ✅ | | ✅ | | | | |
+| **django** | | | | | | | ✅ | | | | | |
+| **selenium** | | | | | | | | | ✅ | | | |
+| **requests** | | | | | | | | ✅ | | ✅ | | |
+| **beautifulsoup4** | | | | | | | | | | ✅ | | |
+| **psycopg2** | | | | | | | | | | | ✅ | |
+| **opencv-python** | | | | | ✅ | | | | | | | |
+| **tkinter** *(stdlib)* | | ✅ | | | | | | | | | | ✅ |
+| **socket** *(stdlib)* | | | | | | | | | | | | ✅ |
+| **scikit-learn** | | | ✅ | | | | | | | | | |
 
 | Source Directory | Depends On | Relationship |
 |:-----------------|:-----------|:-------------|
