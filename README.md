@@ -517,90 +517,125 @@ pip install selenium webdriver-manager
 ```bash
 pip install requests beautifulsoup4
 ```
-
----
-
 ## 🔗 Dependency & Connection Map
 
 ### 🗺️ Complete Python Learning Ecosystem
 
+The diagram below maps the complete learning journey of this repository, showing how foundational concepts evolve into advanced topics, frameworks, and real-world projects.
+
 ```mermaid
 graph TD
 
-    ROOT[🐍 learningPython]
+    ROOT["🐍 learningPython"]
 
-    %% Beginner
-    ROOT --> A[🟢 ABasic_notes]
+    %% ==========================
+    %% FOUNDATION
+    %% ==========================
 
-    A --> A1[📂 FileHandling]
-    A --> A2[📂 Userdefine_module]
-    A --> B[📝 Assignments]
-    A --> D[⚙️ DevOps]
+    ROOT --> A["🟢 ABasic_notes"]
 
-    %% Intermediate
-    A --> C[🟡 AdvancePython]
+    A --> A1["📂 FileHandling"]
+    A --> A2["📂 Userdefine_module"]
+    A --> B["📝 Assignments"]
+    A --> D["⚙️ DevOps"]
 
-    C --> C1[🔷 OOP]
-    C --> C2[🔍 RegularExpression]
-    C --> C3[🖥️ Tkinter]
+    %% ==========================
+    %% ADVANCED PYTHON
+    %% ==========================
 
-    %% Data & ML
-    A --> E[🟠 MachineLearning]
+    A --> C["🟡 AdvancePython"]
 
-    E --> E1[NumPy]
-    E --> E2[Pandas]
-    E --> E3[Matplotlib]
-    E --> E4[LinearRegression]
+    C --> C1["🔷 OOP"]
+    C --> C2["🔍 RegularExpression"]
+    C --> C3["🖥️ Tkinter"]
 
-    E1 --> J[📊 DataAnalysis]
+    %% ==========================
+    %% MACHINE LEARNING
+    %% ==========================
+
+    A --> E["🟠 MachineLearning"]
+
+    E --> E1["NumPy"]
+    E --> E2["Pandas"]
+    E --> E3["Matplotlib"]
+    E --> E4["LinearRegression"]
+
+    E1 --> J["📊 DataAnalysis"]
     E2 --> J
     E3 --> J
     E4 --> J
 
-    E1 --> K[👁️ OpenCV]
+    E1 --> K["👁️ OpenCV"]
 
-    %% Database
-    A --> F[🐘 PostgreSQL]
+    %% ==========================
+    %% DATABASES
+    %% ==========================
 
-    %% Web Development
-    C1 --> G[🌶️ Flask]
+    A --> F["🐘 PostgreSQL"]
+
+    %% ==========================
+    %% WEB DEVELOPMENT
+    %% ==========================
+
+    C1 --> G["🌶️ Flask"]
     C2 --> G
 
-    C1 --> H[🔌 RestAPI]
-    F -. Database Layer .-> H
+    C1 --> H["🔌 RestAPI"]
 
-    %% Networking
-    C3 --> I[💬 ChatApp]
+    F -. "Database Layer" .-> H
+
+    %% ==========================
+    %% NETWORKING
+    %% ==========================
+
+    C3 --> I["💬 ChatApp"]
     C1 --> I
 
-    %% System Design
-    G --> L[🏗️ SystemDesign]
+    %% ==========================
+    %% SYSTEM DESIGN
+    %% ==========================
 
-    %% Scraping & Automation
-    C2 --> W[🕷️ WebScraping]
+    G --> L["🏗️ SystemDesign"]
 
-    W --> M[🤖 Selenium]
+    %% ==========================
+    %% AUTOMATION & SCRAPING
+    %% ==========================
 
-    M --> N[📱 Facebook Poster]
+    C2 --> W["🕷️ WebScraping"]
 
-    %% Final Outcomes
-    J --> P[📈 Real Data Projects]
+    W --> M["🤖 Selenium"]
 
-    K --> Q[🎯 Computer Vision Projects]
+    M --> N["📱 Facebook Poster"]
 
-    I --> R[🌐 Networking Projects]
+    %% ==========================
+    %% REAL-WORLD OUTCOMES
+    %% ==========================
 
-    L --> S[⚡ Scalable Systems]
+    J --> P["📈 Real Data Projects"]
 
-    N --> T[🚀 Automation Projects]
+    K --> Q["🎯 Computer Vision Projects"]
 
-    %% Styling
-    classDef root fill:#2E7D32,color:#fff,stroke:#1B5E20,stroke-width:3px
-    classDef beginner fill:#66BB6A,color:#fff
-    classDef intermediate fill:#42A5F5,color:#fff
-    classDef advanced fill:#FB8C00,color:#fff
-    classDef project fill:#8E24AA,color:#fff
-    classDef outcome fill:#1565C0,color:#fff
+    I --> R["🌐 Networking Projects"]
+
+    L --> S["⚡ Scalable Systems"]
+
+    N --> T["🚀 Automation Projects"]
+
+    %% ==========================
+    %% STYLING
+    %% ==========================
+
+    classDef root fill:#2E7D32,color:#ffffff,stroke:#1B5E20,stroke-width:4px
+
+    classDef beginner fill:#66BB6A,color:#ffffff
+
+    classDef intermediate fill:#42A5F5,color:#ffffff
+
+    classDef advanced fill:#FB8C00,color:#ffffff
+
+    classDef project fill:#8E24AA,color:#ffffff
+
+    classDef outcome fill:#1565C0,color:#ffffff
 
     class ROOT root
 
@@ -613,7 +648,46 @@ graph TD
     class L,M,N,W project
 
     class P,Q,R,S,T outcome
-```---
+```
+
+### Learning Flow
+
+```text
+ABasic_notes
+│
+├── Assignments
+├── DevOps
+├── AdvancePython
+│   ├── OOP
+│   │   ├── Flask
+│   │   │   └── SystemDesign
+│   │   ├── RestAPI
+│   │   └── ChatApp
+│   │
+│   ├── RegularExpression
+│   │   ├── Flask
+│   │   └── WebScraping
+│   │       └── Selenium
+│   │           └── Facebook Poster
+│   │
+│   └── Tkinter
+│       └── ChatApp
+│
+├── MachineLearning
+│   ├── NumPy
+│   ├── Pandas
+│   ├── Matplotlib
+│   ├── LinearRegression
+│   │
+│   ├── DataAnalysis
+│   │   └── Real Data Projects
+│   │
+│   └── OpenCV
+│       └── Computer Vision Projects
+│
+└── PostgreSQL
+    └── RestAPI
+```
 
 ### 📦 Shared Library Matrix
 
